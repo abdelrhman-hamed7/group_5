@@ -1,0 +1,1 @@
+# Ensures pytest resolves imports from project root
