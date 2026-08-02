@@ -36,9 +36,9 @@ def payment_system(monkeypatch):
     return router, repo, primary_gateway, backup_gateway
 
 
-# ---------------------------------------------------------
-# Interface tests
-# ---------------------------------------------------------
+
+
+
 
 
 def test_database_get_transaction_not_implemented():
@@ -72,9 +72,6 @@ def test_gateway_process_payment_not_implemented():
         )
 
 
-# ---------------------------------------------------------
-# API key security tests
-# ---------------------------------------------------------
 
 
 def test_missing_api_key_raises_permission_error(monkeypatch):
@@ -137,9 +134,7 @@ def test_debug_api_key_raises_permission_error(monkeypatch):
     backup_gateway.process_payment.assert_not_called()
 
 
-# ---------------------------------------------------------
-# Amount validation tests
-# ---------------------------------------------------------
+
 
 
 @pytest.mark.parametrize(
@@ -167,9 +162,7 @@ def test_invalid_amount_raises_value_error(
     backup_gateway.process_payment.assert_not_called()
 
 
-# ---------------------------------------------------------
-# Phone number validation tests
-# ---------------------------------------------------------
+
 
 
 @pytest.mark.parametrize(
@@ -204,9 +197,7 @@ def test_invalid_phone_raises_value_error(
     backup_gateway.process_payment.assert_not_called()
 
 
-# ---------------------------------------------------------
-# Idempotency test
-# ---------------------------------------------------------
+
 
 
 def test_successful_existing_transaction_is_not_processed_again(
@@ -233,9 +224,7 @@ def test_successful_existing_transaction_is_not_processed_again(
     repo.record_transaction.assert_not_called()
 
 
-# ---------------------------------------------------------
-# Primary gateway success test
-# ---------------------------------------------------------
+
 
 
 def test_primary_gateway_completes_transaction(
@@ -270,9 +259,7 @@ def test_primary_gateway_completes_transaction(
     backup_gateway.process_payment.assert_not_called()
 
 
-# ---------------------------------------------------------
-# Flaky primary gateway retry test
-# ---------------------------------------------------------
+
 
 
 def test_primary_gateway_retries_after_exception(
@@ -310,9 +297,7 @@ def test_primary_gateway_retries_after_exception(
     backup_gateway.process_payment.assert_not_called()
 
 
-# ---------------------------------------------------------
-# Backup gateway test
-# ---------------------------------------------------------
+
 
 
 def test_backup_gateway_used_when_primary_returns_false(
@@ -351,9 +336,7 @@ def test_backup_gateway_used_when_primary_returns_false(
     )
 
 
-# ---------------------------------------------------------
-# Complete system failure test
-# ---------------------------------------------------------
+
 
 
 def test_both_gateways_raise_exceptions(
