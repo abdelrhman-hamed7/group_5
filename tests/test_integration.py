@@ -1,7 +1,7 @@
 import os
 import pytest
 from payment_router import PaymentRouter, PaymentGatewayClient
-from database import SQLiteDatabaseRepository
+from sqlite_repository import SQLiteDatabaseRepository
 
 class DummyGateway(PaymentGatewayClient):
     def __init__(self, succeed=True):
