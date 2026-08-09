@@ -72,12 +72,4 @@ def test_integration_concurrency_and_mock_lie_proof(db_repo, monkeypatch):
     result = router.execute_transaction(tx_id, amount, recipient)
     assert result == "ALREADY_PROCESSED"
 
-    # MOCK LIE WRITTEN PROOF & CODE CHALLENGE:
-    # Unit tests utilize mocks for DatabaseRepository, meaning they only verify method 
-    # call signatures and return values configured in memory, completely bypassing SQLite. 
-    # Therefore, if a developer modifies the database code inside record_transaction to use 
-    # an invalid table name (e.g., INSERT INTO tx_history instead of transactions), 100% 
-    # of Unit Tests will still pass successfully because no real SQL parser or physical database 
-    # constraints are exercised. In contrast, this Integration Test directly executes 
-    # SQLite operations, immediately catching runtime database schema breakages, syntax errors, 
-    # and constraint violations.
+    
