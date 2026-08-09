@@ -59,6 +59,14 @@ def test_database_record_transaction_not_implemented():
             "SUCCESS",
             "PRIMARY",
         )
+    with pytest.raises(NotImplementedError):
+        repo.record_transaction(
+            "TX001",
+            100.0,
+            "+250780000000",
+            "SUCCESS",
+            "PRIMARY",
+        )
 
 
 def test_gateway_process_payment_not_implemented():
